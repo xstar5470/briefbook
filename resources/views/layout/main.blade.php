@@ -8,18 +8,18 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="MESUY3topeHgvFqsy9EcM916UWQq6khiGHM91wHy">
 
 
-    <title>laravel for blog</title>
+    <title>blog for junwei</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="/css/blog.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/wangEditor.min.css">
+    <link href="css/blog.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset("css/wangEditor.min.css")}}">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -32,30 +32,32 @@
 
 <body>
 
-@include('layout.nav')
+<div class="blog-masthead">
+    <div class="container">
 
+
+        @include("layout/nav")
+    </div>
+</div>
 <div class="container">
 
     <div class="blog-header">
     </div>
 
     <div class="row">
-    @yield("content")
 
-        @include("layout.sidebar")
-    </div><!-- /.row -->
+        @yield("content")
+
+        @include("layout/sidebar")
+    </div>    </div><!-- /.row -->
 </div><!-- /.container -->
 
-@include("layout.footer")
+@include("layout/footer")
 
-@yield("pagejs")
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/wangEditor.min.js"></script>
-<script src="{{ mix('/js/ylaravel.js') }}"></script>
+<script type="text/javascript" src="{{asset("js/wangEditor.min.js")}}"></script>
+<script src="{{asset("js/ylaravel.js")}}"></script>
 
 </body>
 </html>
