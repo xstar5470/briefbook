@@ -15,6 +15,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $posts = $user->posts()->get();
-        return view("user/show",compact("posts","user"));
+        $fans = $user->fans()->paginate(5);
+        return view("user/show",compact("posts","user","fans"));
     }
 }
