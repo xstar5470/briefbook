@@ -38,13 +38,12 @@
                         <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="/user/5">{{$post->user->name}}</a></p>
 
                         <p>{!! str_limit($post->content,320,"....") !!}         </p>
-                        <p class="blog-post-meta">赞 0  | 评论 0</p>
+                        <p class="blog-post-meta">赞 {{$post->zans_count}}  | 评论 {{$post->comments_count}}</p>
                     </div>
                 @endforeach
 
 
                 <ul class="pagination">
-
                     {{$posts->render()}}
                 </ul>
 

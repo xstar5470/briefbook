@@ -1,15 +1,12 @@
-@extends("layout.main")
-
+@extends("layout/main")
 @section("content")
-
     <div class="col-sm-8">
         <blockquote>
-            <p><img src="{{$user->avatar}}" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> {{$user->name}}
+            <p><img src="/storage/9f0b0809fd136c389c20f949baae3957/iBkvipBCiX6cHitZSdTaXydpen5PBiul7yYCc88O.jpeg" alt="" class="img-rounded" style="border-radius:500px; height: 40px"> Kassandra Ankunding2
             </p>
 
 
-            <footer>关注：{{$user->stars_count}}｜粉丝：{{$user->fans_count}}｜文章：{{$user->posts_count}}</footer>
-            @include('user.badges.like', ['target_user' => $user])
+            <footer>关注：{{$user->stars()->count()}}｜粉丝：{{$user->fans()->count()}}｜文章：{{$posts->count()}}</footer>
         </blockquote>
     </div>
     <div class="col-sm-8 blog-main">
@@ -21,40 +18,36 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
+
                     @foreach($posts as $post)
                         <div class="blog-post" style="margin-top: 30px">
-                            <?php \Carbon\Carbon::setLocale('zh');?>
-                            <p class=""><a href="/user/{{$post->user_id}}">{{$post->user->name}}</a> {{$post->created_at->diffForHumans()}}</p>
-                            <p class=""><a href="/posts/{{$post->id}}" >{{$post->title}}</a></p>
+                            <p class=""><a href="/user/5">{{$user->name}}</a> 1周前</p>
+                            <p class=""><a href="/posts/58" >{{$post->title}}</a></p>
 
-
-                            <p>{!! str_limit($post->content, 100, '...') !!}</p>
+                            <p>{!! str_limit($post->content,330,"....") !!}</p>
                         </div>
                     @endforeach
+
+
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_2">
-                    @foreach($stars as $star)
-                        <?php $suser = $star->suser()->first(); ?>
-                        <div class="blog-post" style="margin-top: 30px">
-                            <p class="">{{$suser->name}}</p>
-                            <p class="">关注：{{$suser->stars()->count()}} | 粉丝：{{$suser->fans()->count()}}｜ 文章：{{$suser->posts()->count()}}</p>
 
-                            @include('user.badges.like', ['target_user' => $suser])
+
+
+                    <div class="blog-post" style="margin-top: 30px">
+                        <p class="">Miss Melyssa Bogan DDS</p>
+                        <p class="">关注：2 | 粉丝：2｜ 文章：3</p>
+
+                        <div>
+                            <button class="btn btn-default like-button" like-value="1" like-user="2" _token="MESUY3topeHgvFqsy9EcM916UWQq6khiGHM91wHy" type="button">取消关注</button>
                         </div>
-                    @endforeach
+
+                    </div>
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_3">
-                    @foreach($fans as $fan)
-                        <?php $fuser = $fan->fuser()->first(); ?>
-                        <div class="blog-post" style="margin-top: 30px">
-                            <p class="">{{$fuser->name}}</p>
-                            <p class="">关注：{{$fuser->stars()->count()}} | 粉丝：{{$fuser->fans()->count()}}｜ 文章：{{$fuser->posts()->count()}}</p>
 
-                        @include('user.badges.like', ['target_user' => $fuser])
-                        </div>
-                    @endforeach
                 </div>
                 <!-- /.tab-pane -->
             </div>
@@ -63,6 +56,4 @@
 
 
     </div><!-- /.blog-main -->
-
-
-@endsection
+@stop
